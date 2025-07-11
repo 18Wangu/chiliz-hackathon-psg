@@ -23,7 +23,7 @@ const ChatSection = () => {
       
       {/* Betting question box */}
       <div className="bg-[#1a0e2e] rounded-lg p-4 mb-4 border border-[#FF0052]">
-        <h3 className="text-center font-bold mb-3">La team Vitality va t'elle marquer le prochain but ?</h3>
+        <h3 className="text-center font-bold mb-3">La team Vitality va t&apos;elle marquer le prochain but ?</h3>
         <div className="flex justify-center space-x-4">
           <button 
             onClick={() => handleOptionSelect('oui')}
@@ -71,7 +71,7 @@ const ChatSection = () => {
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-[#0B0518] p-6 rounded-lg border-2 border-[#FF0052] max-w-md w-full">
-            <h3 className="text-xl font-bold mb-4 text-center">La team Vitality va t'elle marquer le prochain but ?</h3>
+            <h3 className="text-xl font-bold mb-4 text-center">La team Vitality va t&apos;elle marquer le prochain but ?</h3>
             <div className="flex justify-center space-x-4 mb-6">
               <button 
                 onClick={() => setSelectedOption('oui')}
