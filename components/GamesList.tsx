@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 // Team logos with correct paths
@@ -32,18 +34,34 @@ const matches = [
 ];
 
 const GamesList = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  // Détecte si l'appareil est mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
+    
+    return () => {
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, []);
+
   return (
-    <div className="bg-[#0B0518] text-[#f5f5f5] p-4 h-full overflow-y-auto">
-      <h2 className="text-xl font-bold mb-4">Games</h2>
-      <div className="space-y-4">
+    <div className="bg-[#0B0518] text-[#f5f5f5] p-3 sm:p-4 h-full overflow-y-auto">
+      <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Games</h2>
+      <div className="space-y-3 sm:space-y-4">
         {matches.map((match) => {
           const team1 = teams.find(t => t.id === match.team1);
           const team2 = teams.find(t => t.id === match.team2);
           
           return (
-            <div key={match.id} className="bg-[#1a0e2e] p-3 rounded-lg flex items-center justify-between">
+            <div key={match.id} className="bg-[#1a0e2e] p-2 sm:p-3 rounded-lg flex items-center justify-between">
               <div className="flex items-center">
-                <div className="w-8 h-8 relative mr-2 flex items-center justify-center bg-[#0B0518] rounded-full overflow-hidden">
+                <div className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} relative mr-1 sm:mr-2 flex items-center justify-center bg-[#0B0518] rounded-full overflow-hidden`}>
                   <Image 
                     src={team1?.logo || ''}
                     alt={team1?.name || ''}
@@ -52,14 +70,14 @@ const GamesList = () => {
                     className="object-contain max-w-full max-h-full"
                   />
                 </div>
-                <span>{team1?.name}</span>
+                <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>{team1?.name}</span>
               </div>
               
-              <span className="mx-2">vs</span>
+              <span className={`mx-1 sm:mx-2 ${isMobile ? 'text-xs' : 'text-sm'}`}>vs</span>
               
               <div className="flex items-center">
-                <span>{team2?.name}</span>
-                <div className="w-8 h-8 relative ml-2 flex items-center justify-center bg-[#0B0518] rounded-full overflow-hidden">
+                <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>{team2?.name}</span>
+                <div className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} relative ml-1 sm:ml-2 flex items-center justify-center bg-[#0B0518] rounded-full overflow-hidden`}>
                   <Image 
                     src={team2?.logo || ''}
                     alt={team2?.name || ''}
