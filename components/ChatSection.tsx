@@ -50,7 +50,7 @@ const ChatSection = () => {
             <span className="font-bold text-[#FF0052]">User2:</span> Great match today!
           </div>
           <div className="text-sm">
-            <span className="font-bold text-[#FF0052]">User3:</span> Can't wait for the next game!
+            <span className="font-bold text-[#FF0052]">User3:</span> Can&apos;t wait for the next game!
           </div>
         </div>
       </div>
