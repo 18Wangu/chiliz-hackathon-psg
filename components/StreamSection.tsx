@@ -1,43 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
 const StreamSection = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [videoError, setVideoError] = useState<boolean>(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Détecte si l'appareil est mobile
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-    
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
-    };
-  }, []);
-
-  // Gestion des erreurs de vidéo
-  useEffect(() => {
-    const handleVideoError = () => {
-      if (videoRef.current) {
-        setVideoError(true);
-        console.error('Erreur de chargement de la vidéo');
-      }
-    };
-
-    const videoElement = videoRef.current;
-    if (videoElement) {
-      videoElement.addEventListener('error', handleVideoError);
-      return () => {
-        videoElement.removeEventListener('error', handleVideoError);
-      };
-    }
-  }, []);
+  // La détection mobile est gérée au niveau de la page principale (app/page.tsx)
 
   return (
     <div className="bg-[#0B0518] text-[#f5f5f5] p-3 sm:p-4 h-full flex flex-col">

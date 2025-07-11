@@ -29,21 +29,8 @@ const ChatSection = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [betAmount, setBetAmount] = useState<string>('');
   const [selectedTeam, setSelectedTeam] = useState<string>('Vitality'); // Par défaut Vitality
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  // Détecte si l'appareil est mobile
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-    
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
-    };
-  }, []);
+  // La détection mobile est gérée au niveau de la page principale (app/page.tsx)
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
